@@ -6,7 +6,7 @@ function CommitNode({ commit, index }: { commit: (typeof commits)[number]; index
   const isLast = index === commits.length - 1;
 
   return (
-    <div className="relative grid grid-cols-[28px_1fr] sm:grid-cols-[96px_1fr] gap-x-3 sm:gap-x-6">
+    <div className="relative grid grid-cols-[28px_1fr] gap-x-3 sm:gap-x-6">
       {/* rail */}
       <div className="relative flex flex-col items-center">
         <motion.div
@@ -16,9 +16,6 @@ function CommitNode({ commit, index }: { commit: (typeof commits)[number]; index
           transition={{ duration: 0.4, ease: "backOut" }}
           className="relative z-10 w-3.5 h-3.5 rounded-full bg-[var(--accent)] ring-4 ring-[var(--paper)] mt-1.5"
         />
-        <span className="hidden sm:block absolute top-6 font-mono text-[10px] text-[var(--ink-faint)] whitespace-nowrap">
-          {commit.hash}
-        </span>
         {!isLast && <div className="flex-1 w-px bg-[var(--line)] mt-2" />}
       </div>
 
@@ -31,7 +28,7 @@ function CommitNode({ commit, index }: { commit: (typeof commits)[number]; index
         className="pb-12 sm:pb-16"
       >
         <div className="font-mono text-[11px] text-[var(--ink-faint)] mb-2 flex flex-wrap items-center gap-2">
-          <span className="sm:hidden">{commit.hash}</span>
+          <span>{commit.hash}</span>
           <span className="px-1.5 py-0.5 rounded border border-[var(--line)] text-[var(--ink-soft)]">
             {commit.branch}
           </span>
@@ -94,15 +91,15 @@ export default function CommitGraph() {
         </div>
 
         <div ref={sectionRef} className="relative">
-          {/* scroll-filled rail line, desktop only (aligned under node column) */}
+          {/* scroll-filled rail line, aligned under the commit dots */}
           <div
             aria-hidden
-            className="hidden sm:block absolute left-[13px] top-0 bottom-0 w-px bg-[var(--line)]"
+            className="absolute left-[13px] top-0 bottom-0 w-px bg-[var(--line)]"
           />
           <motion.div
             aria-hidden
             style={{ scaleY: lineScale }}
-            className="hidden sm:block absolute left-[13px] top-0 bottom-0 w-px bg-[var(--accent)] origin-top"
+            className="absolute left-[13px] top-0 bottom-0 w-px bg-[var(--accent)] origin-top"
           />
 
           {commits.map((c, i) => (
