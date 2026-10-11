@@ -16,7 +16,8 @@ function MarqueeRow({ items, reverse, delay }: { items: string[]; reverse?: bool
         {loop.map((s, i) => (
           <span
             key={`${s}-${i}`}
-            className="font-mono text-[12.5px] px-3.5 py-2 rounded-full border border-[var(--line)] bg-[var(--surface)] whitespace-nowrap text-[var(--ink)]"
+            className="font-mono text-[12.5px] px-4 py-2.5 rounded-full glass whitespace-nowrap text-[var(--ink)] transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:scale-105"
+            style={{ boxShadow: "0 0 0 0 transparent" }}
           >
             {s}
           </span>
@@ -30,14 +31,25 @@ export default function Skills() {
   const groups = Object.entries(skills);
 
   return (
-    <section id="skills" className="py-16 sm:py-24 border-t border-[var(--line)] overflow-hidden">
+    <section id="skills" className="relative py-16 sm:py-24 border-t border-[var(--line)] overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute left-1/2 -translate-x-1/2 top-0 w-[700px] h-[300px] opacity-[0.08] blur-[100px] -z-10"
+        style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-warm))" }}
+      />
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10"
+        >
           <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-2">
             03 — Toolkit
           </div>
-          <h2 className="font-mono font-semibold text-[clamp(1.5rem,3.4vw,2.1rem)]">Skills & tools</h2>
-        </div>
+          <h2 className="font-display font-semibold text-[clamp(1.8rem,4.2vw,2.6rem)]">Skills & tools</h2>
+        </motion.div>
       </div>
 
       <div className="flex flex-col gap-4">

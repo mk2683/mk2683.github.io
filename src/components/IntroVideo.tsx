@@ -23,16 +23,16 @@ export default function IntroVideo() {
             <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-2">
               00 — Intro
             </div>
-            <h2 className="font-mono font-semibold text-[clamp(1.3rem,3vw,1.7rem)]">A 60-second hello</h2>
+            <h2 className="font-display font-semibold text-[clamp(1.6rem,3.6vw,2.1rem)]">A 60-second hello</h2>
           </div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="relative aspect-video w-full rounded-md overflow-hidden border border-[var(--line)] bg-[var(--surface-2)]"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative aspect-video w-full rounded-2xl overflow-hidden glow-ring bg-[var(--surface-2)]"
         >
           {src && isEmbeddable(src) ? (
             <iframe
@@ -51,7 +51,10 @@ export default function IntroVideo() {
             />
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-6">
-              <div className="w-16 h-16 rounded-full border border-dashed border-[var(--line-strong)] grid place-items-center text-[var(--ink-faint)]">
+              <div
+                className="w-16 h-16 rounded-full grid place-items-center text-[var(--accent)]"
+                style={{ background: "var(--accent-soft)" }}
+              >
                 <FiPlay size={22} />
               </div>
               <p className="font-mono text-[12px] text-[var(--ink-faint)] max-w-[40ch]">

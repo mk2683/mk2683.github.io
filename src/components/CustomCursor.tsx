@@ -43,14 +43,28 @@ export default function CustomCursor() {
     <>
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[70] rounded-full bg-[var(--accent)]"
-        style={{ x: mx, y: my, width: 6, height: 6, translateX: "-50%", translateY: "-50%" }}
+        className="pointer-events-none fixed top-0 left-0 z-[70] rounded-full"
+        style={{
+          x: mx,
+          y: my,
+          width: 6,
+          height: 6,
+          translateX: "-50%",
+          translateY: "-50%",
+          background: "linear-gradient(135deg, var(--accent), var(--accent-warm))",
+          boxShadow: "0 0 12px 1px var(--glow)",
+        }}
       />
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[70] rounded-full border border-[var(--accent)]"
-        animate={{ width: hovering ? 48 : 26, height: hovering ? 48 : 26, opacity: hovering ? 0.9 : 0.5 }}
-        transition={{ duration: 0.2 }}
+        className="pointer-events-none fixed top-0 left-0 z-[70] rounded-full border"
+        animate={{
+          width: hovering ? 52 : 26,
+          height: hovering ? 52 : 26,
+          opacity: hovering ? 0.95 : 0.5,
+          borderColor: hovering ? "var(--accent-warm)" : "var(--accent)",
+        }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
       />
     </>
